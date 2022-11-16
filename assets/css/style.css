@@ -6,6 +6,8 @@
     --lightpurple: rgb(154, 60, 154);
     --neonaqua: rgb(0, 255, 242);
     --darkneonaqua: rgb(0, 144, 137);
+    --inverse: #ff000d;
+    --darkinverse: #ff6f76;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -32,6 +34,12 @@ html {
 	padding: 9px;
 	font: inherit;
     background: linear-gradient(var(--neonaqua), var(--darkneonaqua));
+}
+
+#start:hover {
+    background: linear-gradient(var(--darkinverse), var(--inverse));
+    border-color: var(--white);
+    color: var(--white);
 }
 
 #quiz-block {
