@@ -36,17 +36,27 @@ html {
 
 #quiz-block {
     padding: 0px 20% 0px 20%;
-    
+   
 }
-
+/* this style is used for the UNORDERED LIST */
 #multi-choice {
     background-color: var(--white);
     border: 5px solid var(--black);
     border-radius: 10px;
+
 }
 #multi-choice li {
     padding: 5px;
+    list-style: none;
 }
-#multi-choice li:hover {
-    border-bottom: 2px solid var(--purple);
+
+/* container class used to distinguish list inputs and remove styling */
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
+
