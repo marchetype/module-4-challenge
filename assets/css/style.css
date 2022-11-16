@@ -6,8 +6,8 @@
     --lightpurple: rgb(154, 60, 154);
     --neonaqua: rgb(0, 255, 242);
     --darkneonaqua: rgb(0, 144, 137);
-    --inverse: #ff000d;
-    --darkinverse: #ff6f76;
+    --inverse: #ff8800;
+    --darkinverse: #ffe96f;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -36,11 +36,6 @@ html {
     background: linear-gradient(var(--neonaqua), var(--darkneonaqua));
 }
 
-#start:hover {
-    background: linear-gradient(var(--darkinverse), var(--inverse));
-    border-color: var(--white);
-    color: var(--white);
-}
 
 #quiz-block {
     padding: 0px 20% 0px 20%;
@@ -58,8 +53,12 @@ html {
     list-style: none;
 }
 
-/* container class used to distinguish list inputs and remove styling */
+#A, #B, #C, #D {
+    cursor: grab;
+}
 
+/* container class used to distinguish list inputs and remove styling */
+/* 
 .container input {
     position: absolute;
     opacity: 0;
@@ -67,4 +66,4 @@ html {
     height: 0;
     width: 0;
 }
-
+ */
