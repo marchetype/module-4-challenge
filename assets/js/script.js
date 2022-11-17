@@ -9,9 +9,9 @@ let answerB = document.getElementById("B");
 let answerC = document.getElementById("C");
 let answerD = document.getElementById("D");
 let optionArr = [answerA, answerB, answerC, answerD];
-//declaring secondsLeft variable, but not assigning value yet
+//declaring secondsLeft variable, but not assigning value yet.
 let secondsLeft;
-//questions will be displayed one after the other as their own objects in an array
+//questions will be displayed one after the other as their own objects in an array.
 let quizArr = [
     {
         question: 'Which programming language creates the structure of a web application?',
@@ -30,18 +30,18 @@ let quizArr = [
         answers: ['.getElementById', '.appendChild', '.textContent', '.addEventListener'],
         rightAnswer: 0
     }]
-//function below stylizes the start button to contrasting colors, indication of click
+//function below stylizes the start button to contrasting colors, indication of click.
 function startBtnClick() {
     startBtnEl.style.background = "linear-gradient(var(--darkinverse), var(--inverse))";
     startBtnEl.style.borderBlockColor = "var(--white)";
     startBtnEl.style.color = "var(--white)";
 };
-//function below removes the start button from the heading once timer starts
+//function below removes the start button from the heading once the timer starts.
 function startBtnRemove() {
     startBtnEl.style.display = "none";
 }
 
-//function below will display the quiz block
+//function below will display the quiz material
 function displayQuiz() {
     let i = 0;
     let rightAnswer;
@@ -57,15 +57,19 @@ function displayQuiz() {
     }
     
     displayNext();
-    
+    //event listener below will determine validity of answer, if correct, it will go to next question using displayNext(). 
     quizBlockEl.addEventListener('click', (event)=> {
         if (event.target.textContent === quizArr[i].answers[rightAnswer]) {
             console.log("right answer!");
             i++;
-            displayNext();
+            if (i > quizArr.length) {
+                displayScore();
+            } else {
+                displayNext();
+            }
         } else if (event.target.textContent !== quizArr[i].answers[rightAnswer]) {
             event.target.textContent = "incorrect";
-        }
+        } 
     })
         
 
