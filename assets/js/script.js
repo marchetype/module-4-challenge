@@ -4,6 +4,9 @@ let timerEl = document.getElementById("timer");
 let startBtnEl = document.getElementById("start");
 let quizBlockEl = document.getElementById("multi-choice");
 let questionEl = document.getElementById("quiz-question");
+let scoreEl = document.getElementById("score-section");
+let initialInput = document.getElementById("initials");
+let userScore = document.getElementById("final-score");
 let answerA = document.getElementById("A");
 let answerB = document.getElementById("B");
 let answerC = document.getElementById("C");
@@ -60,11 +63,15 @@ function quizTimer() {
     secondsLeft = 60;
     //display all quiz UI
     function displayQuiz() {
-        questionEl.textContent = quizArr[i].question;
-        answerA.textContent = quizArr[i].answers[0];
-        answerB.textContent = quizArr[i].answers[1];
-        answerC.textContent = quizArr[i].answers[2];
-        answerD.textContent = quizArr[i].answers[3];
+        if (i === quizArr.length) {
+            secondsLeft = 0;
+        } else {
+            questionEl.textContent = quizArr[i].question;
+            answerA.textContent = quizArr[i].answers[0];
+            answerB.textContent = quizArr[i].answers[1];
+            answerC.textContent = quizArr[i].answers[2];
+            answerD.textContent = quizArr[i].answers[3];
+        }
     }
 
     //remove start button once quiz timer counts down
@@ -83,9 +90,6 @@ function quizTimer() {
             score ++;
             displayQuiz();    
         //if selection is correct and i is greater than the array's length, seconds left is set to zero.
-        } else if (event.target.id === quizArr[i].rightAnswer && i === quizArr.length) {
-            secondsLeft = 0;
-        //if selection is incorrect, index goes up but score does not. secondsLeft is decreased as well.
         } else if (event.target.id !== quizArr[i].rightAnswer) {
             i++;
             displayQuiz();
@@ -101,7 +105,15 @@ function quizTimer() {
         
         if(secondsLeft <= 0) {
             clearInterval(timerInterval);
-            timerEl.textContent = "Quiz Over! Score:  " + i;
+            timerEl.textContent = "Quiz Over!";
+            questionEl.textContent = " ";
+            for (let i = 0; i < optionArr.length; i++) {
+                optionArr[i].style.visibility = 'hidden';
+            }
+            scoreEl.style.visibility = 'visible';
+            initialInput.style.visibility = 'visible';
+            userScore.style.visibility = 'visible';
+            userScore.textContent = "Your score:   " + score;
         }
 
 

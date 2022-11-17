@@ -53,6 +53,7 @@ html {
     background-color: var(--white);
     border: 5px solid var(--black);
     border-radius: 10px;
+    height: 150px;
     /*visibility: hidden;*/
 
 }
@@ -68,3 +69,22 @@ html {
     /*visibility: hidden;*/
 }
 
+#high-score {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    background: var(--white);
+    border: 5px solid var(--black);
+    border-radius: 10px;
+    visibility: hidden;
+    width: 1000px;
+}
+#initials{
+    position: absolute;
+    top: 34%;
+    left: 23%;
+    width: 25%;
+    height: 75px;
+    visibility: collapse;
+
+}
