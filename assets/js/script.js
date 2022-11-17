@@ -26,23 +26,31 @@ function displayTimer() {
         timerEl.textContent = "You have " + secondsLeft + " second left";
     }
 };
-//questions will be displayed one after the other as their own functions
-function qOne() {
-    questionEl.textContent = "What is considered to be the backbone (or structure) of web applications?";
-    answerA.textContent = "JavaScript";
-    answerB.textContent = "GitHub";
-    answerC.textContent = "HTML";
-    answerD.textContent = "CSS";
+//questions will be displayed one after the other as their own objects in an array
+let quizArr = [
+    {
+        question: 'Which programming language creates the structure of a web application?',
+        answers: ['JavaScript', 'GitHub', 'HTML', 'CSS'],
+        rightAnswer: 2
+    }, {
+        question: 'Which git command will import a GitHub repository on your local hard drive for the first time?',
+        answers: ['git pull origin main','git clone', 'git stash', 'git checkout -b'],
+        rightAnswer: 1
+    }, {
+        question: 'What index number does an array start with by default?',
+        answers: ['-1', 'undefined', '0','1'],
+        rightAnswer: 2
+    }, {
+        question: 'Which method is used to reference HTML elements for use in JavaScript?',
+        answers: ['.getElementById', '.appendChild', '.textContent', '.addEventListener'],
+        rightAnswer: 0
+    }]
 
-}
-//the array below will be used to cycle through questions on screen.
-let quizArr = [qOne]
 
 //function below sets timer to 60 seconds, starts counting down using timerInterval (and will display questions). Master function that will be called upon click.
 function quizTimer() {
     //remove start button once quiz timer counts down
     startBtnRemove();
-    qOne();
 
     secondsLeft = 60;
     displayTimer();
