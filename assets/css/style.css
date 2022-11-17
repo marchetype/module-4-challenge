@@ -41,11 +41,19 @@ html {
     padding: 0px 20% 0px 20%;
    
 }
+
+#quiz-question {
+    /*visibility: hidden;*/
+}
 /* this style is used for the UNORDERED LIST */
 #multi-choice {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     background-color: var(--white);
     border: 5px solid var(--black);
     border-radius: 10px;
+    /*visibility: hidden;*/
 
 }
 #multi-choice li {
@@ -54,16 +62,9 @@ html {
 }
 
 #A, #B, #C, #D {
+    width: fit-content;
+    height: fit-content;
     cursor: grab;
+    /*visibility: hidden;*/
 }
 
-/* container class used to distinguish list inputs and remove styling */
-/* 
-.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
- */

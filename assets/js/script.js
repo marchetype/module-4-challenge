@@ -2,30 +2,15 @@
 let mainEl = document.getElementById("quiz-block");
 let timerEl = document.getElementById("timer");
 let startBtnEl = document.getElementById("start");
+let quizBlockEl = document.getElementById("multi-choice");
 let questionEl = document.getElementById("quiz-question");
 let answerA = document.getElementById("A");
 let answerB = document.getElementById("B");
 let answerC = document.getElementById("C");
 let answerD = document.getElementById("D");
+let optionArr = [answerA, answerB, answerC, answerD];
 //declaring secondsLeft variable, but not assigning value yet
 let secondsLeft;
-//function below stylizes the start button to contrasting colors, indication of click
-function startBtnClick() {
-    startBtnEl.style.background = "linear-gradient(var(--darkinverse), var(--inverse))";
-    startBtnEl.style.borderBlockColor = "var(--white)";
-    startBtnEl.style.color = "var(--white)";
-};
-//function below removes the start button from the heading once timer starts
-function startBtnRemove() {
-    startBtnEl.style.display = "none";
-}
-//function below meant to display the remaining time
-function displayTimer() {
-    timerEl.textContent = "You have " + secondsLeft + " seconds left";
-    if (secondsLeft === 1) {
-        timerEl.textContent = "You have " + secondsLeft + " second left";
-    }
-};
 //questions will be displayed one after the other as their own objects in an array
 let quizArr = [
     {
@@ -45,12 +30,63 @@ let quizArr = [
         answers: ['.getElementById', '.appendChild', '.textContent', '.addEventListener'],
         rightAnswer: 0
     }]
+//function below stylizes the start button to contrasting colors, indication of click
+function startBtnClick() {
+    startBtnEl.style.background = "linear-gradient(var(--darkinverse), var(--inverse))";
+    startBtnEl.style.borderBlockColor = "var(--white)";
+    startBtnEl.style.color = "var(--white)";
+};
+//function below removes the start button from the heading once timer starts
+function startBtnRemove() {
+    startBtnEl.style.display = "none";
+}
+
+//function below will display the quiz block
+function displayQuiz() {
+    let i = 0;
+    let rightAnswer;
+    
+    //function below is called to set value of question to whatever position the array is in.
+    function displayNext() {
+        rightAnswer = quizArr[i].rightAnswer;
+        questionEl.textContent = quizArr[i].question;
+        answerA.textContent = quizArr[i].answers[0];
+        answerB.textContent = quizArr[i].answers[1];
+        answerC.textContent = quizArr[i].answers[2];
+        answerD.textContent = quizArr[i].answers[3];
+    }
+    
+    displayNext();
+    
+    quizBlockEl.addEventListener('click', (event)=> {
+        if (event.target.textContent === quizArr[i].answers[rightAnswer]) {
+            console.log("right answer!");
+            i++;
+            displayNext();
+        } else if (event.target.textContent !== quizArr[i].answers[rightAnswer]) {
+            event.target.textContent = "incorrect";
+        }
+    })
+        
+
+    
+
+}
 
 
+//function below meant to display the remaining time
+function displayTimer() {
+    timerEl.textContent = "You have " + secondsLeft + " seconds left";
+    if (secondsLeft === 1) {
+        timerEl.textContent = "You have " + secondsLeft + " second left";
+    }
+};
 //function below sets timer to 60 seconds, starts counting down using timerInterval (and will display questions). Master function that will be called upon click.
 function quizTimer() {
     //remove start button once quiz timer counts down
     startBtnRemove();
+    //display all quiz UI
+    displayQuiz();
 
     secondsLeft = 60;
     displayTimer();
