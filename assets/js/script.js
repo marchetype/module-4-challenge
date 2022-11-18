@@ -97,7 +97,7 @@ function quizTimer() {
         } else if (event.target.id !== quizArr[i].rightAnswer) {
             i++;
             displayQuiz();
-            secondsLeft--;
+            secondsLeft -= 5;
         }
     })
 
