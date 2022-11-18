@@ -77,14 +77,48 @@ html {
     border: 5px solid var(--black);
     border-radius: 10px;
     visibility: hidden;
-    width: 1000px;
+    width: 900px;
 }
-#initials{
+#initials {
     position: absolute;
+    font-size: larger;
     top: 34%;
     left: 23%;
     width: 25%;
     height: 75px;
     visibility: collapse;
 
+}
+#final-score {
+    position: absolute;
+    top: 28%;
+    left: 23%;
+}
+#hall-of-fame {
+    padding: 15px;
+    position: relative;
+    float: left;
+    background: linear-gradient(var(--inverse), var(--darkinverse));
+    width: 400px;
+    height: min-content;
+    border: 5px solid var(--black);
+    border-radius: 30px;
+}
+
+#hall-of-fame section ul {
+    font-size: large;
+}
+
+.init {
+    float: left;
+    
+}
+
+.score{
+    float: right;
+    margin-right: 100px;
+    
+}
+h6 {
+    font-size: larger;
 }
