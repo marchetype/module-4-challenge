@@ -2,16 +2,21 @@
 let mainEl = document.getElementById("quiz-block");
 let timerEl = document.getElementById("timer");
 let startBtnEl = document.getElementById("start");
+let submitBtnEl = document.getElementById("submit-score");
 let quizBlockEl = document.getElementById("multi-choice");
 let questionEl = document.getElementById("quiz-question");
-let scoreEl = document.getElementById("score-section");
-let initialInput = document.getElementById("initials");
-let userScore = document.getElementById("final-score");
 let answerA = document.getElementById("A");
 let answerB = document.getElementById("B");
 let answerC = document.getElementById("C");
 let answerD = document.getElementById("D");
 let optionArr = [answerA, answerB, answerC, answerD];
+let scoreEl = document.getElementById("score-section");
+let initialInput = document.getElementById("initials");
+let userScore = document.getElementById("final-score");
+let hofInitEl = document.getElementById("init");
+let hofScoreEl = document.getElementById("score");
+let score = 0;
+let scoreList;
 //declaring secondsLeft variable, but not assigning value yet.
 let secondsLeft;
 //same with rightAnswer
@@ -59,7 +64,6 @@ function displayTimer() {
 //function below sets timer to 60 seconds, starts counting down using timerInterval (and will display questions). Master function that will be called upon click.
 function quizTimer() {
     let i = 0;
-    let score = 0;
     secondsLeft = 60;
     //display all quiz UI
     function displayQuiz() {
@@ -110,6 +114,7 @@ function quizTimer() {
             for (let i = 0; i < optionArr.length; i++) {
                 optionArr[i].style.visibility = 'hidden';
             }
+            submitBtnEl.style.visibility  = 'visible';
             scoreEl.style.visibility = 'visible';
             initialInput.style.visibility = 'visible';
             userScore.style.visibility = 'visible';
@@ -122,11 +127,42 @@ function quizTimer() {
 };
 
 
+
+function submitScore(event) {
+    event.preventDefault();
+    function displayScores() {
+        for (i = 0; i < scoreList.length; i++) {
+            let initialLog = scoreList[i].initials;
+            let scoreLog = scoreList[i].score;
     
+            let initialLi = document.createElement("li");
+            initialLi.textContent = initialLog;
+            hofInitEl.appendChild(initialLi);
+            let scoreLi = document.createElement("li");
+            scoreLi.textContent = scoreLog;
+            hofScoreEl.appendChild(scoreLi);
+        } 
+    } 
+    var user = {
+        initials: initialInput.value,
+        score: score,
+    }
+    localStorage.setItem('userScore', JSON.stringify(user))
+    if (localStorage.getItem(userScore) === null) {
+        localStorage.setItem('scores', '[]')
+    }
+    scoreList = JSON.parse(localStorage.getItem('scores'));
+    scoreList.push(user);
+    console.dir(scoreList);
+    localStorage.setItem('scores', JSON.stringify(scoreList));
+    console.dir(scoreList);
+    displayScores();
+}
 
 
 //adding event listener for click, so that timer starts and quiz questions are displayed
 startBtnEl.addEventListener('click', quizTimer);
 startBtnEl.addEventListener('mousedown', startBtnClick);
+submitBtnEl.addEventListener('click', submitScore);
 
  

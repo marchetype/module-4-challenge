@@ -82,7 +82,7 @@ html {
 #initials {
     position: absolute;
     font-size: larger;
-    top: 34%;
+    top: 20%;
     left: 23%;
     width: 25%;
     height: 75px;
@@ -93,6 +93,9 @@ html {
     position: absolute;
     top: 28%;
     left: 23%;
+}
+#submit-score {
+    visibility: hidden;
 }
 #hall-of-fame {
     padding: 15px;
@@ -109,15 +112,19 @@ html {
     font-size: large;
 }
 
-.init {
+#init {
     float: left;
     
 }
 
-.score{
+#score {
     float: right;
     margin-right: 100px;
     
+}
+#submit-score {
+    position: relative;
+    float: right;
 }
 h6 {
     font-size: larger;
